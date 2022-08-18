@@ -33,6 +33,7 @@ jobs:
           name: code
           path: .
       - run: go get github.com/gomodule/redigo@v1.8.5
+      - run: go mod download github.com/gomodule/redigo
       - run: cd ./backend && go build
       - run: go run backend
 

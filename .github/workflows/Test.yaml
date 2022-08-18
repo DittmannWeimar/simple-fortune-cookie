@@ -29,10 +29,11 @@ jobs:
         with:
           name: code
           path: .
+      - run: cd ./backend
       - name: needed go mod
         run: go mod download
       - name: Build backend
-        run: cd ./backend && go build 
+        run:  go build 
       - name: Run Backend
         run: go run backend && cd..
       - name: Build frontend

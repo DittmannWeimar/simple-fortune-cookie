@@ -21,6 +21,7 @@ jobs:
           path: .
   Run-go:
     runs-on: ubuntu-22.04
+    needs: Clone-down
     steps:
       - uses: actions/setup-go@v3
         with:

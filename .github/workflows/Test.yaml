@@ -34,7 +34,7 @@ jobs:
       - name: Build backend
         run: cd backend && go get backend && go build 
       - name: Build frontend
-        run: cd fronend && go build
+        run: cd frontend && go build
         
 
 

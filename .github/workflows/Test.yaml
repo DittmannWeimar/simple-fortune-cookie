@@ -30,12 +30,14 @@ jobs:
         with:
           name: code
           path: .
-      - name: Build
-        run: go build
+      - name: Build backend
+        run: cd ./backend && go build 
       - name: Run Backend
-        run: go run ./backend/main.go
+        run: go run backend && cd..
+      - name: Build frontend
+        run: cd ./frontend && go build
       - name: Run frontend
-        run: go run ./frontend/main.go
+        run: go run frontend  && cd..
       - name: Test
         run: go test
 

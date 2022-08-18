@@ -33,6 +33,9 @@ jobs:
         run: cd backend && go mod download
       - name: Build backend
         run: cd backend && go get backend && go build 
+      - name: Build frontend
+        run: cd fronend && go build
+        
 
 
  # Docker-Build:

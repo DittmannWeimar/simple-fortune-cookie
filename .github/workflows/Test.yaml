@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Build-backend
-          path: app/backend.exe
+          path: app/backend
   Build-frontend:
     runs-on: ubuntu-20.04
     needs: Clone-down
@@ -51,5 +51,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Build-frontend
-          path: app/frontend.exe
+          path: app/frontend
 

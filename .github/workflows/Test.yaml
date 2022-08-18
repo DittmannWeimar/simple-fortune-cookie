@@ -19,25 +19,30 @@ jobs:
         with:
           name: code
           path: .
-  Run-go:
-    runs-on: ubuntu-22.04
+  Build:
+    runs-on: ubuntu-20.04
     needs: Clone-down
+    container: golang:1.19.0
     steps:
-      - uses: actions/setup-go@v3
-        with:
-          go-version: '1.16'
-          check-latest: true
       - name: Download code
         uses: actions/download-artifact@v2
         with:
           name: code
           path: .
-      - run: go get github.com/gomodule/redigo@v1.8.5
-      - run: go mod download github.com/gomodule/redigo
-      - run: cd ./backend && go build
-      - run: go run backend
+      - name: needed go mod
+        run: go get download github.com/gomodule/redigo
+      - name: Build backend
+        run: cd ./backend && go build 
+      - name: Run Backend
+        run: go run backend && cd..
+      - name: Build frontend
+        run: cd ./frontend && go build
+      - name: Run frontend
+        run: go run frontend  && cd..
+      - name: Test
+        run: go test
 
-  Build-backend:
+  Docker-Build:
     runs-on: ubuntu-22.04
     needs: Clone-down
     steps:

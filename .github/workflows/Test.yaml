@@ -30,7 +30,7 @@ jobs:
           name: code
           path: .
       - name: needed go mod
-        run: go install github.com/gomodule/redigo@latest
+        run: go install go get github.com/gomodule/redigo/redis
       - name: Build backend
         run: cd ./backend && go build 
       - name: Run Backend

@@ -20,26 +20,36 @@ jobs:
         with:
           name: code
           path: .
-  Build:
+  Build-backend:
     runs-on: ubuntu-20.04
     needs: Clone-down
-    container: golang:1.19.0
     steps:
       - name: Download code
         uses: actions/download-artifact@v2
         with:
           name: code
           path: .
-      - name: needed go mod
-        run: go get download github.com/gomodule/redigo
-      - name: Build backend
-        run: cd ./backend && go build 
-      - name: Run Backend
-        run: go run backend && cd..
-      - name: Build frontend
-        run: cd ./frontend && go build
-      - name: Run frontend
-        run: go run frontend  && cd..
-      - name: Test
-        run: go test
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile_be .
+      - name: Upload Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-backend
+          path: app/backend.exe
+  Build-frontend:
+    runs-on: ubuntu-20.04
+    needs: Clone-down
+    steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile_fe .
+      - name: Upload Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-frontend
+          path: app/frontend.exe
 

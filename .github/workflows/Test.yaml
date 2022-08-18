@@ -32,6 +32,7 @@ jobs:
         with:
           name: code
           path: .
+      - run: go mod download github.com/gomodule/redigo
       - run: cd ./backend && go build
       - run: go run backend
 

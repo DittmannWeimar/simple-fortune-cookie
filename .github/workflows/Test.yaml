@@ -1,8 +1,8 @@
-name: JAVA CI
+name: Test CI
 on: 
   push:
     branches:
-      - main
+      - **
   pull_request:
     branches:
       - main

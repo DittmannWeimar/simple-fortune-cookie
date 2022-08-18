@@ -1,0 +1,45 @@
+name: JAVA CI
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env: # Set the secret as an input
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
+jobs:
+  Clone-down: 
+    runs-on: ubuntu-20.04
+    #container: x
+    steps:
+      - name: Clone-down
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: Upload Repo
+        uses: actions/upload-artifact@v2
+        with:
+          name: code
+          path: .
+  Build:
+    runs-on: ubuntu-20.04
+    needs: Clone-down
+    container: golang:1.19.0
+    steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: Build
+        run: go build
+      - name: Run Backend
+        run: go run ./backend/main.go
+      - name: Run frontend
+        run: go run ./frontend/main.go
+      - name: Test
+        run: go test
+

@@ -29,19 +29,11 @@ jobs:
         with:
           name: code
           path: .
-      - run: cd ./backend
       - name: needed go mod
-        run: go mod download
+        run: cd backend && go mod download
       - name: Build backend
-        run:  go build 
-      - name: Run Backend
-        run: go run backend && cd..
-      - name: Build frontend
-        run: cd ./frontend && go build
-      - name: Run frontend
-        run: go run frontend  && cd..
-      - name: Test
-        run: go test
+        run: cd backend && go build 
+
 
  # Docker-Build:
  #   runs-on: ubuntu-22.04

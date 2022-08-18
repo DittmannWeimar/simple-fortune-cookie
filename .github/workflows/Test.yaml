@@ -32,7 +32,7 @@ jobs:
       - name: needed go mod
         run: cd backend && go mod download
       - name: Build backend
-        run: cd backend && go build 
+        run: cd backend && go get backend && go build 
 
 
  # Docker-Build:

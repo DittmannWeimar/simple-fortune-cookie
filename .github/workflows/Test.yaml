@@ -30,7 +30,7 @@ jobs:
           name: code
           path: .
       - name: needed go mod
-        run: go install github.com/gomodule/redigo@latest
+        run: go mod download github.com/gomodule/redigo
       - name: Build backend
         run: cd ./backend && go build 
       - name: Run Backend
@@ -42,17 +42,17 @@ jobs:
       - name: Test
         run: go test
 
-  Docker-Build:
-    runs-on: ubuntu-22.04
-    needs: Clone-down
-    steps:
-      - name: Download code
-        uses: actions/download-artifact@v2
-        with:
-          name: code
-          path: .
-      - name: Build the Docker image backend
-        run: docker build . --file Dockerfile_be --tag devops/backend:latest
-      - name: Build the Docker image fronend
-        run: docker build . --file Dockerfile_fe --tag devops/fronend:latest
+ # Docker-Build:
+ #   runs-on: ubuntu-22.04
+ #   needs: Clone-down
+ #   steps:
+ #     - name: Download code
+ #       uses: actions/download-artifact@v2
+ #       with:
+ #         name: code
+ #         path: .
+ #     - name: Build the Docker image backend
+ #       run: docker build . --file Dockerfile_be --tag devops/backend:latest
+ #     - name: Build the Docker image fronend
+ #       run: docker build . --file Dockerfile_fe --tag devops/fronend:latest
 

@@ -32,7 +32,8 @@ jobs:
         with:
           name: code
           path: .
-      - run: go run hello.go 
+      - run: cd ./backend && go build
+      - run: go run backend
 
   Build-backend:
     runs-on: ubuntu-22.04

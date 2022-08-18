@@ -30,7 +30,7 @@ jobs:
           name: code
           path: .
       - name: Build the Docker image
-        run: docker build . --file Dockerfile_be .
+        run: docker build . --file Dockerfile_be
       - name: Upload Build
         uses: actions/upload-artifact@v2
         with:
@@ -46,7 +46,7 @@ jobs:
           name: code
           path: .
       - name: Build the Docker image
-        run: docker build . --file Dockerfile_fe .
+        run: docker build . --file Dockerfile_fe
       - name: Upload Build
         uses: actions/upload-artifact@v2
         with:

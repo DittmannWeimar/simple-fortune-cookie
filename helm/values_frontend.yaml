@@ -11,7 +11,7 @@ name: frontend-deployment
 appLabel: frontend
 
 image:
-  repository: pointnone/fortune_cookie_fe
+  repository: zuzuzazu/frontend-fortune
   tag: "latest"
 
 resources: {}

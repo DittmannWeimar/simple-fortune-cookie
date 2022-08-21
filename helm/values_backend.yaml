@@ -11,7 +11,7 @@ name: backend-deployment
 appLabel: backend
 
 image:
-  repository: pointnone/fortune_cookie_be
+  repository: zuzuzazu/backend-fortune
   tag: "latest"
 
 resources: {}
